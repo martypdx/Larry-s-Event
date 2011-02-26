@@ -24,12 +24,4 @@ function getContext(standard, httpGet) {
     }
   }
 }
-function getStandardComparison(standard) {
-  return function (err, httpResponse) {
-    fs.readFile('./html standards/' + standard + '.html', function(err, response) {
-      assert.isNull(err);
-      assert.equal(httpResponse.data, response);
-    });
-  }
-}
 
