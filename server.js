@@ -4,15 +4,12 @@ app = express.createServer();
 app.set('views', __dirname + '/views/');
 
 app.get('/guests', function (request, response) {
-  response.render('guests.jade',
-          { layout: false, });
+  Render(response, 'guests');
 });
 
-app.post('/guests',
-  function (request, response) {
-    response.render('confirmation.jade',
-      { layout: false });
-  });
+app.post('/guests', function (request, response) {
+  Render(response, 'confirmation');
+});
 
 function Render(response, template) {
 	var options = { layout: false };
