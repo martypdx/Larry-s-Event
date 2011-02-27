@@ -3,13 +3,24 @@ connect = require('connect'),
 app = express.createServer();
 app.set('views', __dirname + '/views/');
 
+var Event = {};
+Event.getGuests = function(callback) {
+  callback(null, ['Bob', 'Sally', 'Tim', 'Joe']);
+};
+Event.register = function(name, callback) {
+  callback(null, 'Bob');
+};
+
 app.get('/guests', function (request, response) {
-  Render(response, 'guests', 
-    {guests: ['Bob', 'Sally', 'Tim', 'Joe']});
+  Event.getGuests(function(err, data) {
+    Render(response, 'guests', {guests: data});
+  });
 });
 
 app.post('/guests', function (request, response) {
-  Render(response, 'confirmation', {guest: 'Bob'});
+  Event.register(request.param('name'), function(err, data) {
+    Render(response, 'confirmation', {guest: data});
+  });
 });
 
 function Render(response, template, locals) {
