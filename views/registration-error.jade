@@ -1,0 +1,10 @@
+h1 Register for Larry's Event
+form(action: '/guests', method: 'post')
+  fieldset
+    p#error(style="color: red")
+      | Name must be provided
+    p
+      label(for="name") Name:
+      input(name: 'name')
+    p
+      input(type: 'submit', value="register")

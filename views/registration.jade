@@ -1,0 +1,10 @@
+h1 Register for Larry's Event
+form(action: '/guests', method: 'post')
+  fieldset
+    - if (locals.error)
+      p#error(style="color: red")= error
+    p
+      label(for="name") Name:
+      input(name: 'name')
+    p
+      input(type: 'submit', value="register")
